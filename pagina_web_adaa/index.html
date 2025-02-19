@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAA - Entrenamiento de Natación</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        ADAA - Planes de Entrenamiento de Natación
+    </header>
+    
+    <div class="container">
+        <h2>Crear Perfil</h2>
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" id="duracion" placeholder="Duración (min)" min="15" max="120">
+        <select id="nivelAprendizaje">
+            <option value="principiante">Principiante</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzado">Avanzado</option>
+        </select>
+        <select id="tipoNatacion">
+            <option value="piscina">Piscina</option>
+            <option value="aguas abiertas">Aguas Abiertas</option>
+        </select>
+        <select id="estiloNado">
+            <option value="crol">Crol</option>
+            <option value="espalda">Espalda</option>
+            <option value="braza">Braza</option>
+            <option value="mariposa">Mariposa</option>
+        </select>
+        <button onclick="generarRutina()">Generar Rutina</button>
+        <p id="perfilGuardado"></p>
+    </div>
+    
+    <div class="container">
+        <h2>Rutina de Entrenamiento</h2>
+        <div id="contenidoRutina"></div>
+    </div>
+    
+    <div class="container">
+        <h2>Aprende con Videos</h2>
+        <p>Mira estos videos para mejorar tu técnica:</p>
+        <div class="videos">
+            <iframe src="https://www.youtube.com/embed/VQxykkE2t-g" title="Técnica de Crol" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/tbwFnGfh0X8" title="Técnica de Espalda" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/MQKySt3het0" title="Técnica de Braza" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/YlhXuC25_L4" title="Técnica de Mariposa" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

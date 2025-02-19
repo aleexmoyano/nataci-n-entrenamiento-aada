@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADAA - Entrenamiento de Natación</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-100 font-sans">
+    <header class="bg-blue-700 text-white text-center py-5 text-2xl font-bold">
+        ADAA - Planes de Entrenamiento de Natación
+    </header>
+    
+    <div class="max-w-2xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Crear Perfil</h2>
+        <input type="text" id="nombre" placeholder="Nombre" class="w-full p-2 border rounded mb-2">
+        <input type="number" id="duracion" placeholder="Duración (min)" min="15" max="120" class="w-full p-2 border rounded mb-2">
+        <select id="nivelAprendizaje" class="w-full p-2 border rounded mb-2">
+            <option value="principiante">Principiante</option>
+            <option value="intermedio">Intermedio</option>
+            <option value="avanzado">Avanzado</option>
+        </select>
+        <select id="tipoNatacion" class="w-full p-2 border rounded mb-2">
+            <option value="piscina">Piscina</option>
+            <option value="aguas abiertas">Aguas Abiertas</option>
+        </select>
+        <select id="estiloNado" class="w-full p-2 border rounded mb-2">
+            <option value="crol">Crol</option>
+            <option value="espalda">Espalda</option>
+            <option value="braza">Braza</option>
+            <option value="mariposa">Mariposa</option>
+        </select>
+        <button onclick="generarRutina()" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+            Generar Rutina
+        </button>
+        <p id="perfilGuardado" class="text-green-600 mt-2"></p>
+    </div>
+    
+    <div class="max-w-2xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Rutina de Entrenamiento</h2>
+        <div id="contenidoRutina" class="bg-gray-100 p-4 rounded"></div>
+    </div>
+    
+    <div class="max-w-2xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-md">
+        <h2 class="text-xl font-semibold mb-4">Aprende con Videos</h2>
+        <p class="text-gray-700 mb-4">Mira estos videos para mejorar tu técnica:</p>
+        <div class="space-y-4">
+            <div>
+                <h3 class="font-semibold">Técnica de Crol</h3>
+                <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/VQxykkE2t-g" title="Técnica de Crol" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div>
+                <h3 class="font-semibold">Técnica de Espalda</h3>
+                <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/tbwFnGfh0X8" title="Técnica de Espalda" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div>
+                <h3 class="font-semibold">Técnica de Braza</h3>
+                <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/MQKySt3het0" title="Técnica de Braza" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div>
+                <h3 class="font-semibold">Técnica de Mariposa</h3>
+                <iframe class="w-full h-64 rounded" src="https://www.youtube.com/embed/YlhXuC25_L4" title="Técnica de Mariposa" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function generarRutina() {
+            const nombre = document.getElementById("nombre").value;
+            const nivel = document.getElementById("nivelAprendizaje").value;
+            const tipoNatacion = document.getElementById("tipoNatacion").value;
+            const estilo = document.getElementById("estiloNado").value;
+            const duracion = parseInt(document.getElementById("duracion").value);
+            
+            if (!nombre || isNaN(duracion)) {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+            
+            let calentamiento = "10 min movilidad articular + 400m nado variado";
+            let ejercicio = "";
+            let material = tipoNatacion === "piscina" ? "Palas y pull buoy" : "Neopreno y aletas";
+
+            if (nivel === "principiante") {
+                if (duracion <= 30) {
+                    ejercicio = "4x50m " + estilo + " técnica y patada";
+                } else if (duracion <= 60) {
+                    ejercicio = "6x100m " + estilo + " a ritmo moderado";
+                } else {
+                    ejercicio = "8x150m " + estilo + " con descansos cortos";
+                }
+            } else if (nivel === "intermedio") {
+                if (duracion <= 30) {
+                    ejercicio = "6x50m " + estilo + " velocidad moderada";
+                } else if (duracion <= 60) {
+                    ejercicio = "10x100m " + estilo + " con cambios de ritmo";
+                } else {
+                    ejercicio = "12x150m " + estilo + " resistencia y técnica";
+                }
+            } else {
+                if (duracion <= 30) {
+                    ejercicio = "8x50m " + estilo + " a alta intensidad";
+                } else if (duracion <= 60) {
+                    ejercicio = "12x100m " + estilo + " resistencia y técnica avanzada";
+                } else {
+                    ejercicio = "15x200m " + estilo + " resistencia con variaciones";
+                }
+            }
+
+            const rutina = `
+                <strong>${nombre}, tu rutina es:</strong><br>
+                <strong>Duración: ${duracion} minutos</strong><br>
+                <strong>Calentamiento:</strong> ${calentamiento}<br>
+                <strong>Ejercicio:</strong> ${ejercicio}<br>
+                <strong>Material:</strong> ${material}
+            `;
+            
+            document.getElementById("contenidoRutina").innerHTML = `<div class='p-4 bg-blue-200 rounded'>${rutina}</div>`;
+        }
+    </script>
+</body>
+</html>
